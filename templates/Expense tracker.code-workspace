@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "Expense-calculator",
+			"path": "../Expense-calculator"
+		}
+	],
+	"settings": {}
+}
