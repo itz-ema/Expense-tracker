@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, g, request
+from flask import Flask, render_template, url_for, g, request, redirect
 import sqlite3
 DATABASE = "database.db"
 app = Flask(__name__)
@@ -34,11 +34,13 @@ def view_categories():
 @app.route ("/add_category", methods = ["POST"])
 def add_category():
     category_name = request.form ['name']
-    sql = "INSERT INTO categories (name, spending_limit) VALUES (?, ?)"
-    query_db(sql,(category_name,))
+    spending_limit = request.form ['spending_limit']
+    sql = "INSERT INTO category (name, spending_limit) VALUES (?, ?)"
+    query_db(sql,(category_name, spending_limit,))
     get_db().commit()
-    return render_template (url_for ("view_categories"))
-    return categories
+    return redirect ("categories")
+
+
 
 @app.route ("/delete_category")
 def delete_category():
