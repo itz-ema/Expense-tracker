@@ -38,16 +38,18 @@ def add_category():
     sql = "INSERT INTO category (name, spending_limit) VALUES (?, ?)"
     query_db(sql,(category_name, spending_limit,))
     get_db().commit()
-    return redirect ("categories")
+    return redirect (url_for("view_categories"))
 
 
+@app.route ("/edit_category")
+def edit_category():
+    return redirect (url_for("view_categories"))
 
 @app.route ("/delete_category")
 def delete_category():
     return 
 
 
-@app.route
 
 @app.route("/expenses")
 def view_expenses():
