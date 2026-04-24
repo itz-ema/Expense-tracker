@@ -40,12 +40,14 @@ def add_category():
     get_db().commit()
     return redirect (url_for("view_categories"))
 
-
-@app.route ("/edit_category")
-def edit_category():
+def edit_category(id):
+    category_name = request.form ['name']
+    spending_limit = request.form ['spending_limit']
+    sql = "UPDATE category SET name =? spending_limit= ? WHERE id = ?"
+    query_db(sql,(category_name, spending_limit, id,))
+    get_db().commit()
     return redirect (url_for("view_categories"))
 
-@app.route ("/delete_category")
 def delete_category():
     return 
 
