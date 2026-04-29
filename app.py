@@ -60,14 +60,26 @@ def delete_category(id):
 
 
 
-@app.route("/expenses")
+@app.route("/view_expenses")
 def view_expenses():
-    sql = """SELECT e.id, e.category_id, SUM (e.amount_spent), c.name, c.id FROM expenses 
-          JOIN categories c ON e.category_id = c.id""" 
-    expenses = query_db(sql)
-    sql = "SELECT * FROM categories"
-    categories = query_db(sql)
-    return render_template("expenses.html", expenses=expenses, categories=categories)
+
+    return render_template("expenses.html")
+
+@app.route ("/add_expenses", methods = ["POST"])
+def add_expenses():
+
+    return redirect (url_for("view_expenses"))
+
+@app.route ("/edit_expenses/<int:id>", methods = ["POST"])
+def edit_expenses(id):
+
+    return redirect (url_for("view_expenses"))
+
+@app.route("/delete_expenses/<int:id>")
+def delete_expenses(id):
+
+    return redirect (url_for("view_expenses"))
+
 
 if __name__ == "__main__":
     app.run(debug= True)
