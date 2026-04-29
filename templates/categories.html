@@ -11,7 +11,7 @@
     <h2> Categories</h2>
     
     <table class = "table table-bordered">
-        <tr><th>Category</th><th>Limit ($)</th><th>Actions</th></tr>
+        <tr><th>Category</th><th>Spending Limit ($)</th><th>Actions</th></tr>
         {%for category in categories%}
             <tr>
                 <form method = "POST" action = "{{url_for ('edit_category', id=category[0]) }}">
