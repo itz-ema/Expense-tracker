@@ -14,36 +14,36 @@
         {%for expense in expenses%}
             <tr>
               <form method = "POST" action = "{{url_for ('edit_expenses', id=expense[0]) }}">
-                    <td>
-                        <select class="form-control" name= "category_id">
-                            {% for category in categories %}
-                                <option value="{{category[0]}}" {% if category[0] == expense[1] %}selected {%endif%} >{{category[1]}}</option>
-                            {%endfor%}
-                        </select>
-                    </td>
-                    <td><input class = "form-control" name= "description" value = "{{category[1]}}"></td>
-                    <td><input class = "form-control" name= "amount" value = "{{category[2]}}"> </td>
-                    <td>
-                        <button class="btn btn-success btn-sm"> Save</button>
-                        <a href = "{{url_for ('delete_expense', id=expense[0])}}" class = "btn btn-danger btn-sm"> Delete</a>  
-                    </td>
-                </form>
+                <td>
+                    <select name= "category_id" class="form-control">
+                        {% for category in categories %}
+                            <option value="{{category[0]}}" {% if category[1] == expense[3] %}selected {%endif%}> {{category[1]}}</option>
+                        {%endfor%}
+                    </select>
+                </td>
+                <td><input class = "form-control" name= "name" value = "{{expense[1]}}"></td>
+                <td><input class = "form-control" name= "amount_spent" value = "{{expense[2]}}"> </td>
+                <td>
+                    <button class="btn btn-success btn-sm"> Save</button>
+                    <a href = "{{url_for ('delete_expenses', id=expense[0])}}" class = "btn btn-danger btn-sm"> Delete</a>  
+                </td>
+              </form>
             </tr>
         {%endfor%}
     </table>
 
 
 
-    <form methods = "POS" actions="{{url_for('add_expenses')}}" class="row g-2 mb-3">
+    <form method = "POST" action="{{url_for('add_expenses')}}" class="row g-2 mb-3">
         <div class = "col-md-3">
-            <select class = "form-control" name = "category-id" required>
+            <select class = "form-control" name = "category_id" required>
                 {%for category in categories%}
                     <option value = "{{category[0]}}">{{category[1]}}</option>
                 {%endfor%}
             </select>
         </div>
-        <div class ="col-md-4"><input class="form-control" name="description" placeholder= "Description" required></div>
-        <div class ="col-md-3"><input class="form-control" name="amount" placeholder= "Amount" required></div>
+        <div class ="col-md-4"><input class="form-control" name="name" placeholder= "Description" required></div>
+        <div class ="col-md-3"><input class="form-control" name="amount_spent" placeholder= "Amount" required></div>
         <div class ="col-md-2"><button class="btn btn-primary w-100" > Add </button></div>
     </form>
 
